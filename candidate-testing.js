@@ -23,6 +23,8 @@ let correctAnswers = [
   "3"
 ];
 let candidateAnswers = ["","","","",""];
+let score;
+let passFail = "";
 let i;
 
 
@@ -42,9 +44,31 @@ function askQuestion() {
 function gradeQuiz(candidateAnswers) {
 
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
+
+  
+  let grade = 0;
+ 
+  for (i = 0; i < correctAnswers.length; i++) {
+    if (correctAnswers[i].toLowerCase() == candidateAnswers[i].toLowerCase()) {
+      grade = grade + 1;
+    } 
+  }
+  
+  return grade;
+}
+
+function runProgram() {
+  askForName();
+  // TODO 1.1c: Ask for candidate's name //
+  console.log("");
+  console.log("Welcome", candidateName + "!");
+  console.log("");
+  askQuestion();
+  grade = gradeQuiz(this.candidateAnswers);
   console.log("");
   console.log("");
   console.log("Candidate Name:",candidateName);
+  
   for (i = 0; i < correctAnswers.length; i++) {
     console.log(i+1,")", questions[i]);
     console.log("Your Answer:",candidateAnswers[i]);
@@ -52,17 +76,7 @@ function gradeQuiz(candidateAnswers) {
     console.log("");
   }
   
-  let grade = 0;
-  for (i = 0; i < correctAnswers.length; i++) {
-    if (correctAnswers[i].toLowerCase() == candidateAnswers[i].toLowerCase()) {
-      grade = grade + 1;
-    } else {
-      
-    }
-  }
-  
-  let score = (grade / correctAnswers.length) * 100;
-  let passFail;
+  score = (grade / correctAnswers.length) * 100;
   if (score >= 80) {
     passFail = "PASSED"
   } else {
@@ -71,16 +85,6 @@ function gradeQuiz(candidateAnswers) {
   
   console.log(">>> Overall Grade:", score + "% (" + grade + " of " + correctAnswers.length + " responses correct) <<<");
   console.log(">>> Status:", passFail, "<<<");
-  return grade;
-}
-
-function runProgram() {
-  askForName();
-  // TODO 1.1c: Ask for candidate's name //
-  console.log("Welcome", candidateName + "!");
-  console.log("");
-  askQuestion();
-  gradeQuiz(this.candidateAnswers);
 }
 
 // Don't write any code below this line //
