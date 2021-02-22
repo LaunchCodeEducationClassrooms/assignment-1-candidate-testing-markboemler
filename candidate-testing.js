@@ -17,7 +17,7 @@ let questions = [
 ];
 let correctAnswers = [
   "Sally Ride",
-  "True",
+  "true",
   "40",
   "Trajectory",
   "3"
@@ -52,6 +52,7 @@ function gradeQuiz(candidateAnswers) {
     } 
   }
   
+  grade = (grade / correctAnswers.length) * 100;
   return grade;
 }
 
@@ -74,14 +75,13 @@ function runProgram() {
     console.log("");
   }
   
-  score = (grade / correctAnswers.length) * 100;
-  if (score >= 80) {
+    if (grade >= 80) {
     passFail = "PASSED"
   } else {
     passFail = "FAILED"
   }
   
-  console.log(">>> Overall Grade:", score + "% (" + grade + " of " + correctAnswers.length + " responses correct) <<<");
+  console.log(">>> Overall Grade:", grade + "% (" + ((grade / 100) * correctAnswers.length) + " of " + correctAnswers.length + " responses correct) <<<");
   console.log(">>> Status:", passFail, "<<<");
 }
 
